@@ -14,6 +14,14 @@ branches:
 env:
   global:
     - secure: "Dwb41Mdes13RFaB9Pf4fViLVt9U0NK8EvbzrD/GcWfHjKi1GpAgQ0WyUdQSKrxLViH2OL4BqQIQmOtugkW1rNQn/Gnnb4Hu4/rZ06+tLStcvmrm9+Pph++niqzCxZe206/VwDV393UVPWtVpFtbhDTaiJOf0dP+3BX7NAzqW+JU="
+    
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  file: target/jrs-rest-client-custom.jar
+  skip_cleanup: true
+  on:
+    tags: true
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:cobertura
