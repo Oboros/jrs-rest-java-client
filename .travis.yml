@@ -26,13 +26,7 @@ dDQruqe12tiIYXCL2lZcSfW2aT6CIbo3MIAsMML8NIT2sUMiWE8hHhmlecwQxqrUrBVkCSzkHqKzS0Gu
   file: target/jrs-rest-client-custom.jar
   skip_cleanup: true
   on:
-    tags: true
-
-before_deploy:
-      # Set up git user name and tag this commit
-      - git config --local user.name "Adam Blinderman"
-      - git config --local user.email "adammblinderman@gmail.com"
-      - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+    tags: false
 
 after_success:
   - mvn clean cobertura:cobertura coveralls:cobertura
