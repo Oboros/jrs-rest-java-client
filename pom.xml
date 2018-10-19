@@ -18,8 +18,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git:http://github.com/Jaspersoft/jrs-rest-java-client</connection>
-        <developerConnection>scm:git:https://github.com/Jaspersoft/jrs-rest-java-client</developerConnection>
+        <connection>scm:git:http://github.com/Oboros/jrs-rest-java-client</connection>
+        <developerConnection>scm:git:https://github.com/Oboros/jrs-rest-java-client</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
