@@ -29,4 +29,5 @@ dDQruqe12tiIYXCL2lZcSfW2aT6CIbo3MIAsMML8NIT2sUMiWE8hHhmlecwQxqrUrBVkCSzkHqKzS0Gu
     tags: false
 
 after_success:
+  - mvn package
   - mvn clean cobertura:cobertura coveralls:cobertura
