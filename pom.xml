@@ -7,7 +7,7 @@
 
     <groupId>com.jaspersoft</groupId>
     <artifactId>jrs-rest-java-client</artifactId>
-    <version>6.3.1</version>
+    <version>6.4.0</version>
     <name>REST client for JasperReports server</name>
     <url>http://github.com/Jaspersoft/jrs-rest-java-client</url>
 
@@ -257,32 +257,13 @@
     </reporting>
     <developers>
         <developer>
-            <id>borys.kolesnykov</id>
-            <name>Borys Kolesnykov</name>
-            <email>borys.kolesnikov@gmail.com</email>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>+3</timezone>
-        </developer>
-        <developer>
-            <id>Krasnyanskiy</id>
-            <name>Alexander Krasnyanskiy</name>
-            <email>krasnyanskiy.alex@gmail.com</email>
+            <id>adam.blinderman</id>
+            <name>Adam Blinderman</name>
+            <email>adammblinderman@gmail.com</email>
             <roles>
                 <role>developer</role>
             </roles>
-            <timezone>+3</timezone>
-        </developer>
-        <developer>
-            <id>tetiana.iefimenko</id>
-            <name>Tetiana Iefiemenko</name>
-            <email>efimenkot@gmail.com</email>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <timezone>+3</timezone>
+            <timezone>-5</timezone>
         </developer>
     </developers>
 </project>

@@ -23,11 +23,13 @@ MMxCiXNgaIn2FKNYeJd4UwhEn64/2LvVmS77Ez9eTQIYDNA7c4XOJ/JEfj4mOcGFTJ+ZZZEmWYWWr31z
 dDQruqe12tiIYXCL2lZcSfW2aT6CIbo3MIAsMML8NIT2sUMiWE8hHhmlecwQxqrUrBVkCSzkHqKzS0GuUFfU2TUAJnxfFhxMkG6bgRM7kUn3ukG0ISc/g7cA0gXDJGCDabfDcfyg0Ff5LsNES88PyV
 +eAlHZT7NpPwWFhPh26Z1nsmM5OcJeswiSA3Yr+tg9pao7+aORBqtd6qVrXf0foTb7NqAW3CXdNmS9CITgl6UPyWPgbunKT7U8kE0RI86ZSkHdKwwJ9TtV7/v4+Ujs+/waKyVzsXgroG2E8RnBYAQO
 +ZQ24pEb5PUKVF2JPB78HBj411W10AkDinutd0kXgvZu5e3AzNL/pQ0ezI9gB1ECKCKnS9BtzkAeNzjk2sTsqwBKATJQVo="
-  file: "jrs-rest-client-custom.jar"
+  file: "target/jrs-java-rest-client-jar-with-dependencies.jar"
   skip_cleanup: true
   on:
-    tags: false
+    tags: true
 
 after_success:
   - mvn package
+  
+after_deploy:
   - mvn clean cobertura:cobertura coveralls:cobertura
