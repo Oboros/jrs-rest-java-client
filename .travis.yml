@@ -16,7 +16,7 @@ env:
     - secure: "Dwb41Mdes13RFaB9Pf4fViLVt9U0NK8EvbzrD/GcWfHjKi1GpAgQ0WyUdQSKrxLViH2OL4BqQIQmOtugkW1rNQn/Gnnb4Hu4/rZ06+tLStcvmrm9+Pph++niqzCxZe206/VwDV393UVPWtVpFtbhDTaiJOf0dP+3BX7NAzqW+JU="
     
 deploy:
-  provider: releases
+  provider: releases 
   api_key: 
      secure: "MpLNWZbJE17d+ew3x4PvH7X/bspZPJM4pGQc8Sii6ufH7lQrnn+dBJAFItZ/IkZnoF6K+DdQsjhLtn+9PUhITx2BQdDfbmRwwuBsLUJmmn7KIUs4R0ONGjeUMtGuhAF7IcPF2MvfJvy
 MMxCiXNgaIn2FKNYeJd4UwhEn64/2LvVmS77Ez9eTQIYDNA7c4XOJ/JEfj4mOcGFTJ+ZZZEmWYWWr31ztBpzTPdpCHPrEYkfj6yWhanbKGrNJ9Irexi2mUyLCPIzCRVy6NmsLfRNhK4LjI4bIxYlqm
