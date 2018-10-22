@@ -47,6 +47,7 @@ public class SessionStorage {
     private RestClientConfiguration configuration;
     private AuthenticationCredentials credentials;
 
+    private SSLContext sslContext;
     private TimeZone userTimeZone;
     private Locale userLocale;
     private WebTarget rootTarget;
@@ -55,25 +56,18 @@ public class SessionStorage {
 
     private Client client;
 
-    /**
-     * @deprecated
-     */
-    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials) {
-        this.configuration = configuration;
-        this.credentials = credentials;
-        init();
+    public SessionStorage(){
+        /*default constructor*/
     }
 
-    /**
-     * @deprecated
-     */
-    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, TimeZone userTimeZone) {
+    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone, SSLContext sslContext) {
         this.configuration = configuration;
         this.credentials = credentials;
         this.userTimeZone = userTimeZone;
+        this.userLocale = userLocale;
+        this.sslContext = sslContext;
         init();
     }
-
 
     public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone) {
         this.configuration = configuration;
@@ -84,17 +78,24 @@ public class SessionStorage {
     }
 
 
-    protected Client getRawClient() {
+    public Client getRawClient() {
         return client;
     }
 
-    protected WebTarget getConfiguredClient() {
+    public WebTarget getConfiguredClient() {
         return configClient();
     }
 
-    private void initSSL(ClientBuilder clientBuilder) {
+    public void initSSL(ClientBuilder clientBuilder) {
         try {
-            SSLContext sslContext = SSLContext.getInstance("SSL");
+            SSLContext sslContext = null;
+
+            if(this.sslContext != null) {
+            // allow sslContexts to be passed in
+                sslContext = this.sslContext;
+            } else {
+                sslContext = SSLContext.getInstance("SSL");
+            }
             HostnameVerifier hostnameVerifier = new HostnameVerifier() {
                 @Override
                 public boolean verify(String s, SSLSession sslSession) {
@@ -111,7 +112,7 @@ public class SessionStorage {
         }
     }
 
-    private void init() {
+    public void init() {
         ClientBuilder clientBuilder = ClientBuilder.newBuilder();
 
         if (configuration.getJasperReportsServerUrl().startsWith("https")) {
@@ -135,7 +136,7 @@ public class SessionStorage {
         configClient();
     }
 
-    protected WebTarget configClient() {
+    public WebTarget configClient() {
         JacksonJsonProvider customRepresentationTypeProvider = new CustomRepresentationTypeProvider()
                 .configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         rootTarget = client.target(configuration.getJasperReportsServerUrl());
