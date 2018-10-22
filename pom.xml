@@ -9,7 +9,7 @@
     <artifactId>jrs-rest-java-client</artifactId>
     <version>6.4.0</version>
     <name>REST client for JasperReports server</name>
-    <url>http://github.com/Jaspersoft/jrs-rest-java-client</url>
+    <url>http://github.com/Oboros/jrs-rest-java-client</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
