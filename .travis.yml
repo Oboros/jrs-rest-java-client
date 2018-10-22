@@ -27,7 +27,7 @@ dDQruqe12tiIYXCL2lZcSfW2aT6CIbo3MIAsMML8NIT2sUMiWE8hHhmlecwQxqrUrBVkCSzkHqKzS0Gu
   file: "target/jrs-rest-java-client-6.4.0-jar-with-dependencies.jar"
   skip_cleanup: true
   on:
-    tags: true
+    tags: false
 
 after_success:
   - mvn assembly:single
