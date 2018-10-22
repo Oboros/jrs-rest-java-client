@@ -56,24 +56,45 @@ public class SessionStorage {
 
     private Client client;
 
-    public SessionStorage(){
+    public SessionStorage() {
         /*default constructor*/
     }
 
-    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone, SSLContext sslContext) {
+    /**
+     * @deprecated
+     */
+    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials) {
+        this.configuration = configuration;
+        this.credentials = credentials;
+        init();
+    }
+
+    /**
+     * @deprecated
+     */
+    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, TimeZone userTimeZone) {
         this.configuration = configuration;
         this.credentials = credentials;
         this.userTimeZone = userTimeZone;
-        this.userLocale = userLocale;
-        this.sslContext = sslContext;
         init();
     }
+
 
     public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone) {
         this.configuration = configuration;
         this.credentials = credentials;
         this.userTimeZone = userTimeZone;
         this.userLocale = userLocale;
+        init();
+    }
+
+    // constructor with sslContext
+    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone, SSLContext sslContext) {
+        this.configuration = configuration;
+        this.credentials = credentials;
+        this.userTimeZone = userTimeZone;
+        this.userLocale = userLocale;
+        this.sslContext = sslContext;
         init();
     }
 
@@ -198,4 +219,14 @@ public class SessionStorage {
     public void setUserLocale(Locale userLocale) {
         this.userLocale = userLocale;
     }
+
+    public void setSSlContext(SSLContext sslContext){
+        this.sslContext = sslContext;
+    }
+
+    public SSLContext setSSlContext(){
+       return this.sslContext;
+    }
+
 }
+
