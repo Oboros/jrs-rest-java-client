@@ -48,6 +48,7 @@ public class SessionStorage {
     private AuthenticationCredentials credentials;
 
     private SSLContext sslContext;
+    private HostnameVerifier hostnameVerifier;
     private TimeZone userTimeZone;
     private Locale userLocale;
     private WebTarget rootTarget;
@@ -88,13 +89,19 @@ public class SessionStorage {
         init();
     }
 
-    // constructor with sslContext
-    public SessionStorage(RestClientConfiguration configuration, AuthenticationCredentials credentials, Locale userLocale, TimeZone userTimeZone, SSLContext sslContext) {
+    // constructor with sslContext and hostname verifier
+    public SessionStorage(RestClientConfiguration configuration, 
+                          AuthenticationCredentials credentials, 
+                          Locale userLocale, 
+                          TimeZone userTimeZone, 
+                          SSLContext sslContext, 
+                          HostnameVerifier hostnameVerifier) {
         this.configuration = configuration;
         this.credentials = credentials;
         this.userTimeZone = userTimeZone;
         this.userLocale = userLocale;
         this.sslContext = sslContext;
+        this.hostnameVerifier = hostnameVerifier;
         init();
     }
 
@@ -110,26 +117,30 @@ public class SessionStorage {
     public void initSSL(ClientBuilder clientBuilder) {
         try {
             SSLContext sslContext = null;
+            HostnameVerifier hostnameVerifier = null;
 
-            if(this.sslContext != null) {
-            // allow sslContexts to be passed in
+            if(this.sslContext != null && this.hostnameVerifier != null) {
+            // allow sslContexts and Hostname Verifiers to be passed in for use
                 sslContext = this.sslContext;
+                hostnameVerifier = this.hostnameVerifier;
+
             } else {
                 sslContext = SSLContext.getInstance("SSL");
+                hostnameVerifier = new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String s, SSLSession sslSession) {
+                        return true;
+                    }
+                };
             }
-            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
-                @Override
-                public boolean verify(String s, SSLSession sslSession) {
-                    return true;
-                }
-            };
+
             sslContext.init(null, configuration.getTrustManagers(), new SecureRandom());
 
             clientBuilder.sslContext(sslContext);
             clientBuilder.hostnameVerifier(hostnameVerifier);
 
         } catch (Exception e) {
-            throw new RuntimeException("Unable inFolder init SSL context", e);
+            throw new RuntimeException("SSL context failed during init", e);
         }
     }
 
