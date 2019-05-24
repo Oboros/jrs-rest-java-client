@@ -9,7 +9,7 @@ notifications:
 
 branches:
   only:
-    - master
+    - develop
     - /v\d+\.\d+[a-z]/
  
 env:
