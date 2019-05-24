@@ -23,7 +23,6 @@ package com.jaspersoft.jasperserver.jaxrs.client.core;
 
 import com.jaspersoft.jasperserver.jaxrs.client.filters.SessionOutputFilter;
 import com.jaspersoft.jasperserver.jaxrs.client.providers.CustomRepresentationTypeProvider;
-import com.sun.jersey.multipart.impl.MultiPartWriter;
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -39,6 +38,7 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
 
@@ -47,8 +47,6 @@ public class SessionStorage {
     private RestClientConfiguration configuration;
     private AuthenticationCredentials credentials;
 
-    private SSLContext sslContext;
-    private HostnameVerifier hostnameVerifier;
     private TimeZone userTimeZone;
     private Locale userLocale;
     private WebTarget rootTarget;
@@ -56,10 +54,6 @@ public class SessionStorage {
 
 
     private Client client;
-
-    public SessionStorage() {
-        /*default constructor*/
-    }
 
     /**
      * @deprecated
@@ -89,68 +83,40 @@ public class SessionStorage {
         init();
     }
 
-    // constructor with sslContext and hostname verifier
-    public SessionStorage(RestClientConfiguration configuration, 
-                          AuthenticationCredentials credentials, 
-                          Locale userLocale, 
-                          TimeZone userTimeZone, 
-                          SSLContext sslContext, 
-                          HostnameVerifier hostnameVerifier) {
-        this.configuration = configuration;
-        this.credentials = credentials;
-        this.userTimeZone = userTimeZone;
-        this.userLocale = userLocale;
-        this.sslContext = sslContext;
-        this.hostnameVerifier = hostnameVerifier;
-        init();
-    }
 
-
-    public Client getRawClient() {
+    protected Client getRawClient() {
         return client;
     }
 
-    public WebTarget getConfiguredClient() {
+    protected WebTarget getConfiguredClient() {
         return configClient();
     }
 
-    public void initSSL(ClientBuilder clientBuilder) {
+    private void initSSL(ClientBuilder clientBuilder) {
         try {
-            SSLContext sslContext = null;
-            HostnameVerifier hostnameVerifier = null;
-
-            if(this.sslContext != null && this.hostnameVerifier != null) {
-            // allow sslContexts and Hostname Verifiers to be passed in for use
-                sslContext = this.sslContext;
-                hostnameVerifier = this.hostnameVerifier;
-
-            } else {
-                sslContext = SSLContext.getInstance("SSL");
-                hostnameVerifier = new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String s, SSLSession sslSession) {
-                        return true;
-                    }
-                };
-            }
-
+            SSLContext sslContext = SSLContext.getInstance("SSL");
+            HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+                @Override
+                public boolean verify(String s, SSLSession sslSession) {
+                    return true;
+                }
+            };
             sslContext.init(null, configuration.getTrustManagers(), new SecureRandom());
 
             clientBuilder.sslContext(sslContext);
             clientBuilder.hostnameVerifier(hostnameVerifier);
 
         } catch (Exception e) {
-            throw new RuntimeException("SSL context failed during init", e);
+            throw new RuntimeException("Unable inFolder init SSL context", e);
         }
     }
 
-    public void init() {
+    private void init() {
         ClientBuilder clientBuilder = ClientBuilder.newBuilder();
 
         if (configuration.getJasperReportsServerUrl().startsWith("https")) {
             initSSL(clientBuilder);
         }
-
         client = clientBuilder.build();
 
         Integer connectionTimeout = configuration.getConnectionTimeout();
@@ -168,14 +134,16 @@ public class SessionStorage {
         configClient();
     }
 
-    public WebTarget configClient() {
+    protected WebTarget configClient() {
         JacksonJsonProvider customRepresentationTypeProvider = new CustomRepresentationTypeProvider()
                 .configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+
         rootTarget = client.target(configuration.getJasperReportsServerUrl());
         rootTarget
                 .register(customRepresentationTypeProvider)
                 .register(JacksonFeature.class)
-                .register(MultiPartWriter.class);
+                .register(MultiPartFeature.class);
         if (sessionId != null) {
             rootTarget.register(new SessionOutputFilter(sessionId));
         }
@@ -230,14 +198,4 @@ public class SessionStorage {
     public void setUserLocale(Locale userLocale) {
         this.userLocale = userLocale;
     }
-
-    public void setSSlContext(SSLContext sslContext){
-        this.sslContext = sslContext;
-    }
-
-    public SSLContext setSSlContext(){
-       return this.sslContext;
-    }
-
 }
-

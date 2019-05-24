@@ -20,7 +20,7 @@
  */
 
 package com.jaspersoft.jasperserver.jaxrs.client.apiadapters.resources;
-
+@Deprecated
 public enum ResourceSearchParameter {
 
     /**
@@ -115,17 +115,7 @@ public enum ResourceSearchParameter {
      *
      * Type/Value: String
      */
-    RESOURCE_URI("resourceUri"),
-
-    /**
-     * When true, the Total-Count header is set in every paginated response,
-     * which impacts performance. When false, the default, the header is set in the
-     * first page only. Note that Total-Count is the intermediate, unfiltered count of
-     * results, not the number of results returned by this service.
-     *
-     * Type/Value: true|false
-     */
-    FORCE_FULL_PAGE("forceFullPage")
+    RESOURCE_URI("resourceUri")
 
     ;
 
