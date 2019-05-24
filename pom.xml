@@ -7,7 +7,7 @@
 
     <groupId>com.jaspersoft</groupId>
     <artifactId>jrs-rest-java-client</artifactId>
-    <version>7.1.0</version>
+    <version>6.3.20-SNAPSHOT</version>
     <name>REST client for JasperReports server</name>
     <url>http://github.com/Jaspersoft/jrs-rest-java-client</url>
 
@@ -30,7 +30,7 @@
           <url>https://jaspersoft.jfrog.io/jaspersoft/jaspersoft-clients-releases</url>
         </repository>
         <repository>
-          <id>central</id>
+          <id>central</id> https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases/com/jaspersoft/jasperserver/jasperserver-dto/7.1.0/jasperserver-dto-7.1.0.jar
           <name>jaspersoft-releases</name>
           <url>https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases</url>
         </repository>        
