@@ -30,7 +30,7 @@
           <url>https://jaspersoft.jfrog.io/jaspersoft/jaspersoft-clients-releases</url>
         </repository>
         <repository>
-          <id>central</id> https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases/com/jaspersoft/jasperserver/jasperserver-dto/7.1.0/jasperserver-dto-7.1.0.jar
+          <id>central</id>
           <name>jaspersoft-releases</name>
           <url>https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases</url>
         </repository>        
