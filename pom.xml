@@ -7,14 +7,14 @@
 
     <groupId>com.jaspersoft</groupId>
     <artifactId>jrs-rest-java-client</artifactId>
-    <version>6.3.20-SNAPSHOT</version>
+    <version>develop-jrio-SNAPSHOT</version>
     <name>REST client for JasperReports server</name>
     <url>http://github.com/Jaspersoft/jrs-rest-java-client</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <powermock.version>1.5.5</powermock.version>
-        <jasperserver-dto.version>7.1.0</jasperserver-dto.version>
+        <jasperserver-dto.version>develop-SNAPSHOT</jasperserver-dto.version>
     </properties>
 
     <scm>
@@ -33,8 +33,8 @@
           <id>central</id>
           <name>jaspersoft-releases</name>
           <url>https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases</url>
-        </repository>           
-    </repositories>
+        </repository>        
+</repositories>
 
     <dependencies>
         <dependency>
@@ -157,129 +157,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>1.7.12</version>
-        </dependency>
-
-      <!-- dto dependencies -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jackson-annotations</artifactId>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation.api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.1</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <artifactId>stax-api</artifactId>
-                    <groupId>javax.xml.stream</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>activation</artifactId>
-                    <groupId>javax.activation</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-          <groupId>org.mockito</groupId>
-          <artifactId>mockito-all</artifactId>
-          <version>1.9.5</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.sun.xml.bind</groupId>
-          <artifactId>jaxb-impl</artifactId>
-          <version>2.1.5</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-          <version>4.11</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-          <version>${guava.version}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.fasterxml.jackson.module</groupId>
-          <artifactId>jackson-module-jaxb-annotations</artifactId>
-          <version>${jackson.version}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>com.fasterxml.jackson.jaxrs</groupId>
-          <artifactId>jackson-jaxrs-json-provider</artifactId>
-          <version>${jackson.version}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.codehaus.woodstox</groupId>
-          <artifactId>woodstox-core-asl</artifactId>
-          <version>4.4.1</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-core-lgpl</artifactId>
-          <version>1.9.2</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-mapper-lgpl</artifactId>
-          <version>1.9.2</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.codehaus.jackson</groupId>
-          <artifactId>jackson-xc</artifactId>
-          <version>1.9.2</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>commons-io</groupId>
-          <artifactId>commons-io</artifactId>
-          <version>1.4</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>joda-time</groupId>
-          <artifactId>joda-time</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
-          <version>1.3</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-library</artifactId>
-          <version>1.3</version>
-          <scope>test</scope>
         </dependency>
     </dependencies>
 
