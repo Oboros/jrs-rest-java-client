@@ -33,8 +33,13 @@
           <id>central</id>
           <name>jaspersoft-releases</name>
           <url>https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases</url>
-        </repository>        
-</repositories>
+        </repository>
+        <repository>
+          <id>dto</id>
+          <name>jaspersoft-dto-releases</name>
+          <url>https://jaspersoft.jfrog.io/jaspersoft/jrs-ce-releases/com/jaspersoft/jasperserver/jasperserver-dto/7.1.0/</url>
+        </repository>           
+    </repositories>
 
     <dependencies>
         <dependency>
